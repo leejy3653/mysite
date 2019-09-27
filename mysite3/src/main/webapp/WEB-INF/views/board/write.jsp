@@ -16,7 +16,7 @@
 		<c:import url="/WEB-INF/views/includes/header.jsp" />
 		<div id="content">
 			<div id="board">
-				<form class="board-form" method="post" action="${pageContext.servletContext.contextPath }/board">
+				<form class="board-form" method="post" action="${pageContext.servletContext.contextPath }/board/write">
 					<input type="hidden" name="a" value="write">
 					<input type="hidden" name="user_no" value="${param.user_no }">
 					<table class="tbl-ex">
@@ -33,7 +33,7 @@
 						</tr>
 					</table>
 					<div class="bottom">
-						<a href="${pageContext.servletContext.contextPath }/board?a=select">취소</a> <input type="submit" value="등록">
+						<a href="${pageContext.servletContext.contextPath }/board/list">취소</a> <input type="submit" value="등록">	<!-- /board?a=select -->
 					</div>
 				</form>
 			</div>
