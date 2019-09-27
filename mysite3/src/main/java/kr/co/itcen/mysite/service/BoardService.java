@@ -19,7 +19,7 @@ public class BoardService {
 	public Map<String, Object> list(int page, String kwd){
 		page = (page==0)? 1 : page;
 		//화면에 띄울 게시글의 수
-		int board_count = 10;
+		int board_count = 5;
 		//화면에 보여줄 페이지
 		int size_page = 5;
 
