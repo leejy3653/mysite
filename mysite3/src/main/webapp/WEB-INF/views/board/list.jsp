@@ -40,7 +40,7 @@
 									<img
 										src="${pageContext.servletContext.contextPath }/assets/images/reply.png">
 								</c:if> <a
-								href="${pageContext.servletContext.contextPath }/board/view/${vo.g_no }&${vo.o_no }&${vo.depth }&${vo.user_no }&${page }">${vo.title }</a></td>
+								href="${pageContext.servletContext.contextPath }/board/view&g_no=${vo.g_no }&o_no=${vo.o_no }&depth=${vo.depth }&user_no=${vo.user_no }&page=${page }">${vo.title }</a></td>
 
 							<td>${vo.username }</td>
 							<td>${vo.hit }</td>
@@ -48,7 +48,7 @@
 							<td>
 							<c:if test="${vo.getUser_no() == authUser.getNo() }">
 									<a
-										href="${pageContext.servletContext.contextPath }/board/delete/${vo.no }"
+										href="${pageContext.servletContext.contextPath }/board?a=delete&no=${vo.no }"
 										class="del"> 삭제 </a>
 										</c:if>
 								</td>
