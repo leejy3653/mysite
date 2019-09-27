@@ -134,7 +134,6 @@ public class BoardController {
 			@RequestParam(value = "kwd", required = true, defaultValue = "") String kwd) {
 
 		boardService.writeComment(commentVo);
-
 		// model.addAttribute("no", commentVo.getBoard_no());
 
 		return "redirect:/board/view/" + commentVo.getBoard_no() + "?page=" + page + "&kwd=" + kwd;
