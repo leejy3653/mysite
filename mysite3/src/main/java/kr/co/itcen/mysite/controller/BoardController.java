@@ -24,7 +24,7 @@ public class BoardController {
 	private BoardService boardService;
 
 	
-	@RequestMapping(value = "/board?a=select", method = RequestMethod.GET)
+	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public String list(
 			@RequestParam(value = "page", required = true, defaultValue = "0") int page,
 			@RequestParam(value = "kwd", required = true, defaultValue = "") String kwd,
@@ -36,10 +36,6 @@ public class BoardController {
 		return "board/list";
 
 	}
-	
-	
-	
-	
 	
 	@RequestMapping(value="/list", method=RequestMethod.POST)
 	public String searchList(
