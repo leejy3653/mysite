@@ -40,7 +40,7 @@
 									<img
 										src="${pageContext.servletContext.contextPath }/assets/images/reply.png">
 								</c:if> <a
-								href="${pageContext.servletContext.contextPath }/board?a=view&g_no=${vo.g_no }&o_no=${vo.o_no }&depth=${vo.depth }&user_no=${vo.user_no }&page=${page }">${vo.title }</a></td>
+								href="${pageContext.servletContext.contextPath }/board/view/${vo.no }?page=${page }&kwd=${kwd}">${vo.title }</a></td>
 
 							<td>${vo.username }</td>
 							<td>${vo.hit }</td>
@@ -48,7 +48,7 @@
 							<td>
 							<c:if test="${vo.getUser_no() == authUser.getNo() }">
 									<a
-										href="${pageContext.servletContext.contextPath }/board?a=delete&no=${vo.no }"
+										href="${pageContext.servletContext.contextPath }/board/delete?no=${vo.no }?page=${page }&kwd=${kwd}"
 										class="del"> 삭제 </a>
 										</c:if>
 								</td>
@@ -67,7 +67,7 @@
 								</c:when>
 								<c:when test="${start_page!=1 }">
 									<li><a
-										href="${pageContext.servletContext.contextPath }/board?a=select&page=${start_page-size_page }">◀</a></li>
+										href="${pageContext.servletContext.contextPath }//board/list?page=${start_page-size_page }">◀</a></li>
 								</c:when>
 							</c:choose>
 							<c:forEach var="i" begin="${start_page }" end="${end_page }"
@@ -75,11 +75,11 @@
 								<c:choose>
 									<c:when test="${page == i }">
 										<li class="selected"><a
-											href="${pageContext.servletContext.contextPath }/board?a=select&page=${i }">${i }</a></li>
+											href="${pageContext.servletContext.contextPath }/board/list?page=${i }">${i }</a></li>
 									</c:when>
 									<c:when test="${(page != i) and (total_page>=i) }">
 										<li><a
-											href="${pageContext.servletContext.contextPath }/board?a=select&page=${i }">${i }</a></li>
+											href="${pageContext.servletContext.contextPath }/board/list?page=${i }">${i }</a></li>
 									</c:when>
 									<c:otherwise>
 										<li>${i }</li>
@@ -89,7 +89,7 @@
 							<c:choose>
 								<c:when test="${end_page<total_page && size_page<total_page }">
 									<li><a
-										href="${pageContext.servletContext.contextPath }/board?a=select&page=${start_page+size_page }">▶</a></li>
+										href="${pageContext.servletContext.contextPath }/board/list?page=${start_page+size_page }">▶</a></li>
 								</c:when>
 								<c:otherwise>
 									<li>▶</li>
@@ -107,7 +107,7 @@
 								</c:when>
 								<c:when test="${start_page!=1 }">
 									<li><a
-										href="${pageContext.servletContext.contextPath }/board?a=searchselect&page=${start_page-size_page }&kwd=${kwd }">◀</a></li>
+										href="${pageContext.servletContext.contextPath }/board/list?page=${start_page-size_page }&kwd=${kwd }">◀</a></li>
 								</c:when>
 							</c:choose>
 							<c:forEach var="i" begin="${start_page }" end="${end_page }"
@@ -115,11 +115,11 @@
 								<c:choose>
 									<c:when test="${page == i }">
 										<li class="selected"><a
-											href="${pageContext.servletContext.contextPath }/board?a=searchselect&page=${i }&kwd=${kwd }">${i }</a></li>
+											href="${pageContext.servletContext.contextPath }/board/list?page=${i }&kwd=${kwd }">${i }</a></li>
 									</c:when>
 									<c:when test="${(page != i) and (total_page>=i) }">
 										<li><a
-											href="${pageContext.servletContext.contextPath }/board?a=searchselect&page=${i }&kwd=${kwd }">${i }</a></li>
+											href="${pageContext.servletContext.contextPath }/board/list?page=${i }&kwd=${kwd }">${i }</a></li>
 									</c:when>
 									<c:otherwise>
 										<li>${i }</li>
@@ -129,7 +129,7 @@
 							<c:choose>
 								<c:when test="${end_page<total_page && size_page<total_page }">
 									<li><a
-										href="${pageContext.servletContext.contextPath }/board?a=searchselect&page=${start_page+size_page }&kwd=${kwd }">▶</a></li>
+										href="${pageContext.servletContext.contextPath }/board/list?page=${start_page+size_page }&kwd=${kwd }">▶</a></li>
 								</c:when>
 								<c:otherwise>
 									<li>▶</li>
@@ -144,8 +144,8 @@
 
 				<div class="bottom">
 					<c:if test="${not empty authUser }">
-						<a
-							href="${pageContext.servletContext.contextPath }/board?a=writeAdd&user_no=${authuser.no }"
+						<a <%-- href="${pageContext.servletContext.contextPath }/board?a=writeAdd&user_no=${authuser.no }" --%>
+						href="${pageContext.servletContext.contextPath }/board/write?page=${page }&kwd=${kwd}"
 							id="new-book">글쓰기</a>
 					</c:if>
 				</div>
