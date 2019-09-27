@@ -40,23 +40,24 @@
 					<c:choose>
 						<c:when test="${vo.getUser_no() == authUser.getNo() }">
 							<a
-								href="${pageContext.servletContext.contextPath }/board?a=select">글목록</a>
+								href="${pageContext.servletContext.contextPath }/board/list?page=${page}&kwd=${kwd}">글목록</a>
 
 							<a
-								href="${pageContext.servletContext.contextPath }/board?a=replyView&g_no=${vo.g_no }&o_no=${vo.o_no }&depth=${param.depth }&user_no=${authuser.no }&title=${vo.title }&page=${page }">답글달기</a>
+								href="${pageContext.servletContext.contextPath }/board/reply/${vo.no }?page=${page}&kwd=${kwd}">답글달기</a>
 
 							<a
-								href="${pageContext.servletContext.contextPath }/board?a=modify&title=${vo.title }&contents=${vo.contents }&no=${vo.no }&page=${page }">글수정</a>
+								href="${pageContext.servletContext.contextPath }/board/modify/${vo.no }?page=${page}&kwd=${kwd}">글수정</a>
 						</c:when>
 						<c:when
 							test="${!empty authUser && vo.getUser_no() != authUser.getNo() }">
 							<a
-								href="${pageContext.servletContext.contextPath }/board?a=select">글목록</a>
+								href="${pageContext.servletContext.contextPath }/board/list?page=${page}&kwd=${kwd}">글목록</a>
 							<a
-								href="${pageContext.servletContext.contextPath }/board?a=replyView&g_no=${vo.g_no }&o_no=${vo.o_no }&depth=${param.depth }&user_no=${authuser.no }&title=${vo.title }&page=${page }">답글달기</a>
+								href="${pageContext.servletContext.contextPath }/board/reply/${vo.no }?page=${page}&kwd=${kwd}">답글달기</a>
 						</c:when>
 						<c:otherwise>
-							<a href="${pageContext.servletContext.contextPath }/board">글목록</a>
+							<a
+								href="${pageContext.servletContext.contextPath }/board/list?page=${page}&kwd=${kwd}">글목록</a>
 						</c:otherwise>
 					</c:choose>
 
@@ -67,9 +68,11 @@
 						<tr>
 							<td class="label">${cl.username }</td>
 							<td>${cl.comment }</td>
-							<td><c:if test="${cl.getUser_no() == authUser.getNo() ||vo.getUser_no() == authUser.getNo()}"> <!-- 원 글 작성자 또는 답글 작성자만 답글 삭제 가능 -->
+							<td><c:if
+									test="${cl.getUser_no() == authUser.getNo() ||vo.getUser_no() == authUser.getNo()}">
+									<!-- 원 글 작성자 또는 답글 작성자만 답글 삭제 가능 -->
 									<a
-										href="${pageContext.servletContext.contextPath }/board?a=deletecomment&no=${cl.no }&g_no=${param.g_no }&o_no=${param.o_no }"
+										href="${pageContext.servletContext.contextPath }/board/deleteComment?no=${cl.no }&board_no=${vo.no }&page=${page}&kwd=${kwd}"
 										class="del"> 삭제 </a>
 								</c:if></td>
 						</tr>
@@ -77,10 +80,8 @@
 				</table>
 				<c:if test="${not empty authUser }">
 					<form class="board-form" method="post"
-						action="${pageContext.servletContext.contextPath }/board?a=insertcomment&user_no=${authuser.no }">
-						<input type="hidden" name="a" value="insertcomment"> <input
-							type="hidden" name="g_no" value="${param.g_no }"> <input
-							type="hidden" name="o_no" value="${param.o_no }">
+						action="${pageContext.servletContext.contextPath }/board/writeComment?user_no=${authuser.no }&page=${page}&kwd=${kwd}">
+						<input type="hidden" name="board_no" value="${vo.no }">
 						<table class="tbl-ex">
 							<tr>
 								<td class="label">댓글</td>
