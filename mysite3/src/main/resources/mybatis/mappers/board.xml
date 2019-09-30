@@ -1,8 +1,31 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="board">
+
+	<select id="getMaxGroupNo" resultType="long">
+		<![CDATA[	
+			select max(g_no)+1 from board
+		]]>
+	</select>
+
+	<insert id="insert" parameterType="boardvo">
+			<![CDATA[
+			insert
+			  into board 
+			values (null,
+				    #{title },
+					#{contents },
+					now(),
+					0,
+					(select max(b.g_no)+1 from board b),
+					#{o_no },
+					#{depth },
+					#{user_no })
+			]]>
+	</insert>
+	
 	<select id="getTotalCount" parameterType="string"
-		resultType="int">
+		resultType="int"><!-- 완료 -->
 		<![CDATA[
 			select count(*) from board
 		]]>
@@ -16,46 +39,23 @@
 
 	<select id="getList" parameterType="map" resultType="boardvo">
 			<![CDATA[
-				select a.no, a.title, a.contents, a.reg_Date, a.hit, a.g_no, a.o_no, a.depth, a.user_no ,b.name as username  
+				select a.no, a.title, a.contents, a.reg_date, a.hit, a.g_no, a.o_no, a.depth, a.user_no ,b.name as username  
 				  from board a, user b 
 				 where a.user_no = b.no
 			]]>
 		<if test="kwd != null and kwd !=''">
 				<![CDATA[
-					and title like '%${kwd }%'
+				   and title like '%${kwd }%'
 				]]>
 		</if>
 			<![CDATA[
-				order by g_no desc, o_no asc  
-				 	limit #{page }, #{board_count }
+			  order by g_no desc, o_no asc  
+				 limit #{page }, #{board_count }
 			]]>
 
 	</select>
 
-	<select id="getMaxGroupNo" resultType="long">
-		<![CDATA[	
-			select max(g_no)+1 from board
-		]]>
-	</select>
 
-	<insert id="insert" parameterType="boardvo">
-		<choose>
-			<when test="g_no==0">
-			<![CDATA[
-			insert 
-			  into board 
-			values (null, #{title }, #{contents }, now(), 0, #{max_no }, 1, 0, #{user_no })
-			]]>
-			</when>
-			<otherwise>
-			<![CDATA[
-			insert
-			  into board 
-			values (null, #{title }, #{contents }, now(), 0, #{g_no }, #{o_no }, #{depth }, #{user_no })
-			]]>
-			</otherwise>
-		</choose>
-	</insert>
 	<update id="updateOrderNo" parameterType="boardvo">
 		<![CDATA[
 			update board 
@@ -67,16 +67,17 @@
 
 	<delete id="delete" parameterType="boardvo">
 		<![CDATA[
-			delete 
-			  from board 
-		 	 where no = #{no }
+		update board
+		   set title='원글이 삭제된 게시글 입니다.',
+		       contents='게시자의 요청에 의해 본문이 삭제되었습니다.'
+		 where no= #{no }
 		]]>
 	</delete>
 
 	<update id="updateHit" parameterType="boardvo">
 		<![CDATA[
 			update board 
-			   set hit = (hit+1)
+			   set hit = #{hit }
 			 where g_no = #{g_no } 
 			   and o_no = #{o_no }
 		]]>
@@ -87,7 +88,7 @@
 		<![CDATA[
 			select no, title, contents, user_no, depth, g_no, o_no 
 			  from board
-			 where no=#{no }
+			 where no = #{no }
 		]]>
 	</select>
 
@@ -96,9 +97,9 @@
 		<![CDATA[
 			select a.user_no, c.name as username, a.comment, a.no 
 			  from comment a, board b, user c
-			 where a.board_no=b.no
-			   and a.user_no=c.no 
-			   and b.no= #{no } 
+			 where a.board_no = b.no
+			   and a.user_no = c.no 
+			   and b.no = #{no } 
 		  order by a.no asc
 		]]>
 	</select>
@@ -115,15 +116,15 @@
 		<![CDATA[
 			delete
 			  from comment
-			 where no=#{no }
+			 where no = #{no }
 		]]>
 	</delete>
 
-	<update id="update" parameterType="boardvo">
+	<update id="update" parameterType="boardvo">	<!-- 게시글 수정 완료 -->
 		<![CDATA[
 			update
-			 board set title=#{title }, contents=#{contents }
-			 where no=#{no }
+			 board set title=#{title }, contents=#{contents }, reg_date=now()
+			 where no = #{no }
 		]]>
 	</update>
 	<select id="selectAll" parameterType="boardvo"

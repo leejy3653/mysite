@@ -52,7 +52,7 @@ public class BoardService {
 
 	public void write(BoardVo boardVo) {
 		boardVo.setMax_no(boardDao.get());
-		System.out.println(boardVo);
+		//System.out.println(boardVo);
 		boardDao.insert(boardVo);
 	}
 
@@ -61,7 +61,7 @@ public class BoardService {
 	}
 
 	public Map<String, Object> view(BoardVo boardVo) {
-		//hit update
+		//조회수
 		boardDao.hitUpdate(boardVo);
 		
 		boardVo = boardDao.get(boardVo);

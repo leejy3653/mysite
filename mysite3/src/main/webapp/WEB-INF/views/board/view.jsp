@@ -85,7 +85,7 @@
 						<table class="tbl-ex">
 							<tr>
 								<td class="label">댓글</td>
-								<td><input type="text" name="content" value=""></td>
+								<td><input type="text" name="contents" value=""></td>
 								<td><input type="submit" value="댓글"></td>
 							</tr>
 						</table>

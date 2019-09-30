@@ -44,7 +44,7 @@ public class BoardDao {
 	}
 
 	public int insert(BoardVo boardVo) {
-		System.out.println(boardVo.getG_no());
+		//System.out.println(boardVo.getG_no());
 		return sqlSession.insert("board.insert", boardVo);
 	}
 

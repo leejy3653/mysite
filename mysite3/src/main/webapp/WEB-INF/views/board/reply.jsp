@@ -34,7 +34,7 @@
 						</tr>
 						<tr>
 							<td class="label">³»¿ë</td>
-							<td><textarea id="content" name="content"></textarea></td>
+							<td><textarea id="contents" name="contents"></textarea></td>
 						</tr>
 					</table>
 					<div class="bottom">
