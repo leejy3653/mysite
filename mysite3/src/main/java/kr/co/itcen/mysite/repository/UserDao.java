@@ -50,6 +50,12 @@ public class UserDao {
 	public int getUpdate(Long no) {
 		return sqlSession.update("user.getUpdate" ,no);
 		}
+	
+	public Object get(String email) {
+
+		UserVo result = sqlSession.selectOne("user.getByEmail", email);
+		return result;
+	}
 
 	public Boolean update(UserVo vo) {
 //		Boolean result = false;
@@ -84,5 +90,7 @@ public class UserDao {
 //		}
 		return count == 1;
 	}
+
+
 
 }
