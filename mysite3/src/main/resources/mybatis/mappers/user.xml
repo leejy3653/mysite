@@ -14,9 +14,8 @@
 			]]>
 		</selectKey>
 	</insert>
-
-	<select id="getByEmailAndPassword1" parameterType="uservo"
-		resultType="uservo">
+	
+	<select id="getByEmailAndPassword1" parameterType="uservo" resultType="uservo">
 		<![CDATA[
 		select no, name 
 		  from user
@@ -33,8 +32,7 @@
 		]]>
 	</select>
 
-	<select id="getByEmail" parameterType="string"
-		resultType="uservo">
+	<select id="getByEmail" parameterType="string" resultType="uservo">
 		<![CDATA[
 		select no, email
 		  from user
@@ -42,8 +40,7 @@
 		]]>
 	</select>
 
-	<select id="getByEmailAndPassword2" parameterType="map"
-		resultType="uservo">
+	<select id="getByEmailAndPassword2" parameterType="map" resultType="uservo">
 		<![CDATA[
 		select no, name 
 		  from user
@@ -51,17 +48,17 @@
 		   and password = #{password }		
 		]]>
 	</select>
-
+	
 	<update id="update" parameterType="uservo">
 		<![CDATA[
         update user
            set name = #{name },
-        ]]>
-		<if test=" password != '' ">   
+        ]]>            
+        <if test=" password != '' ">   
 			<![CDATA[
                password = #{password },
 			]]>
-		</if>       
+        </if>       
 		<![CDATA[
                gender = #{gender }
          where no = #{no }

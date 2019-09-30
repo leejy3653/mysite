@@ -8,43 +8,53 @@
 <title>mysite</title>
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <link href="${pageContext.servletContext.contextPath }/assets/css/user.css" rel="stylesheet" type="text/css">
-<script> /* 자바 스크립트 */
-var i1 =10;/* 변수 설정, 실행 하면서 변수의 타입이 결정된다.*/
-var i2 = new Number(10);
-console.log(i1+ ":" + i1);/* 브라우저의 콘솔에 출력 */
+<script src="${pageContext.servletContext.contextPath }/assets/js/jquery/jquery-1.9.0.js" type="text/javascript"></script>
+<script>
+$(function() {
+	
+	
+	$("#input-email").change(function(){
+		$("#btn-check-email").show();
+		$("#img-checked").hide();
+		
+	});
+	
+	
+	$("#btn-check-email").click(function(){
+		var email = $("#input-email").val();
+		if(email == ""){
+			return;
+		}
+		
+		// ajax 통신
+		$.ajax({ //전역함수
+			url: "/mysite3/api/user/checkemail?email=" + email,
+			type: "get",
+			dataType: "json",
+			data: "",
+			success: function(response){ //callback 함수
+				if(response.result == "fail"){
+					console.error(response.message);
+					return;
+				}
+			
+				if(response.data == true){
+					alert("이미 존재하는 메일입니다.");
+					$("#input-email").val("");
+					$("#input-email").focus();
+					return;
+				}
+				
+				$("#btn-check-email").hide();
+				$("#img-checked").show();
+			},
+			error: function(xhr, error) {
+				console.error("error:"+error);
+			}
+		});
 
-var s1 = "Hello World";/* String 객체로 바꿔버린다 */
-var s2 = new String("Hello World");
-console.log(s1+":"+s2);
-
-var o1 = new Object();
-var o2 = {}
-o2.name="둘리";
-o2.age=10;
-o2.info = function(){
-	console.log(this.name+":"+this.age);
-}
-o2.info();
-
-//JSON
-var o3 ={
-	name: "둘리"	,
-	age: 10,
-	info: function(){
-		console.log(this.name+":"+this.age);		
-	}
-}
-o3.info();
-
-var user = {
-		email: "leejy3653@naver.com",
-		gender: "mail",
-		joinDate: "2019-09-30",
-		name: "이종윤",
-		no: 10,
-		password: null
-}
-
+	});
+});
 </script>
 </head>
 <body>
@@ -57,8 +67,9 @@ var user = {
 					<input id="name" name="name" type="text" value="">
 
 					<label class="block-label" for="email">이메일</label>
-					<input id="email" name="email" type="text" value="">
-					<input type="button" value="id 중복체크">
+					<input id="input-email" name="email" type="text" value="">
+					<input id="btn-check-email" type="button" value="중복확인">
+					<img id="img-checked" style='width:20px; display:none' src="${pageContext.servletContext.contextPath }/assets/images/check.png"/>
 					
 					<label class="block-label">패스워드</label>
 					<input name="password" type="password" value="">

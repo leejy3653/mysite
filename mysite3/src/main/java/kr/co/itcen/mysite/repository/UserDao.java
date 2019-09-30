@@ -51,10 +51,9 @@ public class UserDao {
 		return sqlSession.update("user.getUpdate" ,no);
 		}
 	
-	public Object get(String email) {
-
+	public UserVo get(String email) {
 		UserVo result = sqlSession.selectOne("user.getByEmail", email);
-		return result;
+		return result;		
 	}
 
 	public Boolean update(UserVo vo) {

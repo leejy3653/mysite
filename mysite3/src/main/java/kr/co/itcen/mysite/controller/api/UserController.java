@@ -6,20 +6,20 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import kr.co.itcen.mysite.dto.JSONResult;
 import kr.co.itcen.mysite.service.UserService;
 
 @Controller("userApiController")
 @RequestMapping("/api/user")
 public class UserController {
-	
+
 	@Autowired
 	private UserService userService;
-	
+
 	@ResponseBody
 	@RequestMapping("/checkemail")
-	public String checkEmail(@RequestParam(value = "email", required = true, defaultValue = "") String email) {
+	public JSONResult checkEmail(@RequestParam(value = "email", required = true, defaultValue = "") String email) {
 		Boolean exist = userService.existUser(email);
-		
-		return exist ? "exists" : "not exist"; //http://localhost:8088/mysite3/api/user/checkemail 여기들어가서 확인
-		}
+		return JSONResult.success(exist);
+	}
 }

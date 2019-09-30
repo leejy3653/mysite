@@ -2,12 +2,32 @@ package kr.co.itcen.mysite.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import kr.co.itcen.mysite.vo.UserVo;
 
 @Controller
 public class MainController {
-	
-	@RequestMapping({"", "/main"})
+
+	@RequestMapping({ "", "/main" })
 	public String index() {
-		return "main/index"; //dispatcher-servlet의 View Resolver
+		return "main/index"; // dispatcher-servlet의 View Resolver
+	}
+
+	@ResponseBody
+	@RequestMapping("/hello")
+	public String hello() {
+		return "안녕하세요 ~";
+	} // 한글이 깨진다 -> 기본 한글처리가 안되어 있음 -> dispatcher-servlet에서
+
+	@ResponseBody
+	@RequestMapping("/hello2")
+	public UserVo hello2() {
+		UserVo vo = new UserVo();
+		vo.setNo(10L);
+		vo.setName("이종윤");
+		vo.setEmail("leejy3653@naver.com");
+
+		return vo;
 	}
 }
