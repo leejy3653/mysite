@@ -26,7 +26,7 @@
 					</list>
 				</property>
 			</bean>
-			
+
 			<bean
 				class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
 				<property name="supportedMediaTypes">
@@ -53,7 +53,7 @@
 	</bean>
 
 
-
+	<aop:aspectj-autoproxy />
 	<context:annotation-config />
 	<context:component-scan
 		base-package="kr.co.itcen.mysite.controller, kr.co.itcen.mysite.exception" /> <!-- @controlleradvice 떄문에 exception 추가 -->

@@ -51,6 +51,7 @@ public class BoardService {
 	}
 
 	public void write(BoardVo boardVo) {
+		
 		boardVo.setMax_no(boardDao.get());
 		//System.out.println(boardVo);
 		boardDao.insert(boardVo);
