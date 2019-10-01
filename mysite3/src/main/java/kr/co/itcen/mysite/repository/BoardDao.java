@@ -43,7 +43,7 @@ public class BoardDao {
 		return sqlSession.selectOne("board.getMaxGroupNo");
 	}
 
-	public int insert(BoardVo boardVo) {
+	public int insert(BoardVo boardVo) throws BoardDaoException {
 		//System.out.println(boardVo.getG_no());
 		return sqlSession.insert("board.insert", boardVo);
 	}

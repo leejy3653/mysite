@@ -61,7 +61,7 @@ public class UserController {
 		}
 		return "redirect:/";
 	}
-	
+
 //	@ExceptionHandler(UserDaoException.class)
 //	public String HandlerException() {
 //		return "error/exception";

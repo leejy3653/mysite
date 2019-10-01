@@ -1,6 +1,5 @@
 package kr.co.itcen.mysite.repository;
 
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -9,6 +8,7 @@ import javax.sql.DataSource;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.util.StopWatch;
 
 import kr.co.itcen.mysite.exception.UserDaoException;
 import kr.co.itcen.mysite.vo.UserVo;
@@ -23,17 +23,17 @@ public class UserDao {
 	private DataSource datasource;
 
 	public Boolean insert(UserVo vo) throws UserDaoException {//
+
 		int count = sqlSession.insert("user.insert", vo);
 		System.out.println(vo);
-
 		return count == 1;
 	}
 
-	public UserVo get(Long no) {//
+	public UserVo get(Long no) {
 		return sqlSession.selectOne("user.getByNo", no);
 	}
 
-	public UserVo get(UserVo vo) {//
+	public UserVo get(UserVo vo) {
 		UserVo result = sqlSession.selectOne("user.getByEmailAndPassword1", vo);
 		return result;
 
@@ -48,12 +48,12 @@ public class UserDao {
 	}
 
 	public int getUpdate(Long no) {
-		return sqlSession.update("user.getUpdate" ,no);
-		}
-	
+		return sqlSession.update("user.getUpdate", no);
+	}
+
 	public UserVo get(String email) {
 		UserVo result = sqlSession.selectOne("user.getByEmail", email);
-		return result;		
+		return result;
 	}
 
 	public Boolean update(UserVo vo) {
@@ -89,7 +89,5 @@ public class UserDao {
 //		}
 		return count == 1;
 	}
-
-
 
 }
