@@ -16,7 +16,7 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 
-	@ResponseBody
+	@ResponseBody // ajax를 사용하면 jsp 파일이 필요 없음
 	@RequestMapping("/checkemail")
 	public JSONResult checkEmail(@RequestParam(value = "email", required = true, defaultValue = "") String email) {
 		Boolean exist = userService.existUser(email);
