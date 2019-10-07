@@ -1,6 +1,5 @@
 package kr.co.itcen.mysite.controller;
 
-import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,17 +51,19 @@ public class UserController {
 
 	@Auth("USER")
 	@RequestMapping(value = "/update", method = RequestMethod.GET)
-	public String update(
-			@ModelAttribute@AuthUser UserVo authUser) {
+	public String update(@AuthUser UserVo authUser, Model model) {
+		//Long no = authUser.getNo();
 		System.out.println(authUser);
-		authUser = userService.getUser(authUser.getNo());
+		UserVo userVo = userService.getUser(authUser.getNo());
+
+		model.addAttribute("UserVo", userVo);
+
 		return "user/update";
 	}
-
+	
 	@RequestMapping(value="/update", method=RequestMethod.POST)
-	public String update(
-		@ModelAttribute @Valid UserVo vo,
-		BindingResult result) {
+	public String update(@ModelAttribute UserVo userVo) {
+		System.out.println("post ->" + userVo);
 		return "user/update";
 	}
 }

@@ -53,6 +53,9 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
 		
 		// 9. Method의 @Auth의 Role이 "ADMIN"인 경우.
 		//  과제 return false를 하게끔
+		if("ADMIN".equals(role)) {
+			
+		}
 		
 		return true;
 	}

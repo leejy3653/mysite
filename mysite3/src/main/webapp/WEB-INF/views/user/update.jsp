@@ -3,6 +3,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,10 +13,16 @@
 <link
 	href="${pageContext.servletContext.contextPath }/assets/css/user.css"
 	rel="stylesheet" type="text/css">
+	
+<!-- jquery CDN 추가 -->
+<script
+	src="${pageContext.servletContext.contextPath }/assets/js/jquery/jquery-1.9.0.js"
+	type="text/javascript"></script>
+	
 </head>
 <body>
 	<div id="container">
-		<jsp:include page="/WEB-INF/views/includes/header.jsp" />
+		<c:import url="/WEB-INF/views/includes/header.jsp" />
 		<div id="content">
 			<div id="user">
 
@@ -23,8 +31,9 @@
 					<label class="block-label" for="name">이름</label> 
 					<input id="name" name="name" type="text" value="${user.name }"> 
 					<label class="block-label" for="email">이메일</label>
-					<h4>${vo.email }</h4>
-
+					<h4>${userVo.email }</h4>
+					
+					<br>
 					<label class="block-label">패스워드</label> <input name="password"
 						type="password" value="">
 

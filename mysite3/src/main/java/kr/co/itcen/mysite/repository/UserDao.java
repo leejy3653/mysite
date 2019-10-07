@@ -3,12 +3,9 @@ package kr.co.itcen.mysite.repository;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.sql.DataSource;
-
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import org.springframework.util.StopWatch;
 
 import kr.co.itcen.mysite.exception.UserDaoException;
 import kr.co.itcen.mysite.vo.UserVo;
@@ -18,9 +15,6 @@ public class UserDao {
 
 	@Autowired
 	private SqlSession sqlSession;
-
-	@Autowired
-	private DataSource datasource;
 
 	public Boolean insert(UserVo vo) throws UserDaoException {//
 
@@ -57,36 +51,7 @@ public class UserDao {
 	}
 
 	public Boolean update(UserVo vo) {
-//		Boolean result = false;
 		int count = sqlSession.update("user.update", vo);
-//		Connection connection = null;
-//		PreparedStatement pstmt = null;
-//		try {
-//			connection = datasource.getConnection();
-//
-//			String sql = "update user set name = ?, email = ?, gender = ? where no = ?";
-//			pstmt = connection.prepareStatement(sql);
-//			pstmt.setString(1, vo.getName());
-//			pstmt.setString(2, vo.getEmail());
-//			pstmt.setString(3, vo.getGender());
-//			pstmt.setLong(4, vo.getNo());
-//			
-//			int count = pstmt.executeUpdate();
-//			result = (count == 1);
-//		} catch (SQLException e) {
-//			System.out.println("error : " + e);
-//		} finally {
-//			try {
-//				if (pstmt != null) {
-//					pstmt.close();
-//				}
-//				if (connection != null) {
-//					connection.close();
-//				}
-//			} catch (SQLException e) {
-//				e.printStackTrace();
-//			}
-//		}
 		return count == 1;
 	}
 
