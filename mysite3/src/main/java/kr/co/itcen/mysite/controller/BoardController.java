@@ -146,5 +146,6 @@ public class BoardController {
 		boardService.deleteComment(commentVo);
 
 		return "redirect:/board/view/" + commentVo.getBoard_no() + "?page=" + page + "&kwd=" + kwd;
+		
 	}
 }

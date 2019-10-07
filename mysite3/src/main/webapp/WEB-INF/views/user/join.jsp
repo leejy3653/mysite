@@ -78,7 +78,7 @@ $(function(){
 					<spring:hasBindErrors name="userVo">
 						<c:if test='${errors.hasFieldErrors("name") }'>
 							<p
-								style="font-weight: bold; color: red; text-align: left; padding-left: 0">
+								style="font-weight: bold; color: red; text-align: left; padding: 2px 0 0 0">
 								<spring:message code='${errors.getFieldError("name").codes[0] }'
 									text='${errors.getFieldError("name").defaultMessage }' />
 							</p>
@@ -94,15 +94,30 @@ $(function(){
 						style="font-weight: bold; color: red; text-align: left; padding: 2px 0 0 0">
 						<form:errors path="email" />
 					</p>
+					<br>
 
 					<label class="block-label">패스워드</label>
-					<form:password path='password' />
+					<form:input path="password" type="password"/>
+					<spring:hasBindErrors name="userVo">
+						<c:if test='${errors.hasFieldErrors("password") }'>
+							<p
+								style="font-weight: bold; color: red; text-align: left; padding: 2px 0 0 0">
+								<spring:message code='${errors.getFieldError("password").codes[0] }'
+									text='${errors.getFieldError("password").defaultMessage }' />
+							</p>
+						</c:if>
+					</spring:hasBindErrors>
+					<br>
 
 					<label class="block-label">성별</label>
 					<p>
 						<form:radiobuttons items="${userVo.genders}" path="gender" />
+				
+					<p
+						style="font-weight: bold; color: red; text-align: left; padding: 2px 0 0 0">
+						<form:errors path="gender" />
 					</p>
-
+					<br>
 					<fieldset>
 						<legend>약관동의</legend>
 						<input id="agree-prov" type="checkbox" name="agreeProv" value="y">
