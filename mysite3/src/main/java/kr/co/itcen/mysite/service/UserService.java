@@ -9,10 +9,10 @@ import kr.co.itcen.mysite.vo.UserVo;
 @Service
 public class UserService {
 	@Autowired
-	private UserDao userDao; // Dao 주입
-
+	private UserDao userDao;
+	
 	public void join(UserVo vo) {
-		userDao.insert(vo);
+			userDao.insert(vo);	
 	}
 
 	public UserVo getUser(UserVo vo) {
@@ -21,20 +21,19 @@ public class UserService {
 
 	public void update(UserVo vo) {
 		userDao.update(vo);
-
+		
 	}
 
 	public UserVo get(Long no) {
-
 		return userDao.get(no);
 	}
 
 	public Boolean existUser(String email) {
-		return userDao.get(email) != null;
+		return userDao.get(email) !=null;
 	}
 
 	public UserVo getUser(Long no) {
-		return null;
+		return userDao.get(no);
 	}
 
 }

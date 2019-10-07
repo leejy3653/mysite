@@ -41,9 +41,9 @@ public class UserDao {
 		return result;
 	}
 
-	public int getUpdate(Long no) {
-		return sqlSession.update("user.getUpdate", no);
-	}
+//	public int getUpdate(Long no) {
+//		return sqlSession.update("user.getUpdate", no);
+//	}
 
 	public UserVo get(String email) {
 		UserVo result = sqlSession.selectOne("user.getByEmail", email);

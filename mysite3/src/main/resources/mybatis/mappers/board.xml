@@ -36,21 +36,21 @@
 		]]>
 	</select>
 	
-	<insert id="insert" parameterType="boardvo"><!-- 
-		<choose>
-			<when test="g_no==0"> -->
+	<insert id="insert" parameterType="boardvo">
+	<choose>
+			<when test="g_no==0">
 			<![CDATA[
 			insert into board 
-				values(null,#{title },#{contents },now(),0,(select max(g_no)+1 from board as b),1,0,#{user_no })
-			]]><!-- 
+				values(null,#{title },#{contents }, now(),0,#{max_no },1,0,#{user_no })
+			]]>
 			</when>
 			<otherwise>
 			<![CDATA[
 			insert into board 
-				values(null,#{title },#{contents },now(),0,#{g_no },#{o_no },#{depth },#{user_no })
+				values(null,#{title },#{contents } , now(),0,#{g_no },#{o_no },#{depth } ,#{user_no })
 			]]>
 			</otherwise>
-		</choose> -->
+		</choose>
 	</insert>
 	<update id="updateOrderNo" parameterType="boardvo">
 		<![CDATA[
