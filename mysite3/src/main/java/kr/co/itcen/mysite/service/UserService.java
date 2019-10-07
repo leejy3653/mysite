@@ -33,4 +33,9 @@ public class UserService {
 		return userDao.get(email) != null;
 	}
 
+	public static UserVo getUser(Long no) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
