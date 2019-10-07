@@ -40,12 +40,12 @@ public class AuthUserHandlerMethodArgumentResolver implements HandlerMethodArgum
 			return false;
 		}
 
-		// 파라이터 타입이 UserVo인지 확인
+		// 파라미터 타입이 UserVo인지 확인
 		if (parameter.getParameterType().equals(UserVo.class) == false) {
 			return false;
 		}
 
-		return false;
+		return true;
 	}
 
 }

@@ -47,7 +47,7 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
 		
 		// 8. Method의 @Auth의 Role이 "USER"인 경우.
 		// 인증만 되어 있으면 모두 통과
-		if(role=="USER") {
+		if("USER".equals(role)) {
 			return true;
 		}
 		

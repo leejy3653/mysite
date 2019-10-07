@@ -52,19 +52,10 @@ public class UserController {
 
 	@Auth("USER")
 	@RequestMapping(value = "/update", method = RequestMethod.GET)
-	public String update(@AuthUser UserVo authUser, Model model) {
-		// UserVo authUser = (UserVo)session.getAttribute("authUser");
-		Long no = authUser.getNo();
+	public String update(
+			@ModelAttribute@AuthUser UserVo authUser) {
 		System.out.println(authUser);
-		UserVo userVo = UserService.getUser(no);
-
-		model.addAttribute("UserVo", userVo);
-
-		// ACL (Access Control List)
-		// if (session.getAttribute("authUser") == null) {
-		// return "/redirect";
-		// }
-
+		authUser = userService.getUser(authUser.getNo());
 		return "user/update";
 	}
 
