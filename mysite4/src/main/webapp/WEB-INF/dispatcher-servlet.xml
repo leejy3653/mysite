@@ -43,8 +43,6 @@
 		</mvc:argument-resolvers>
 	</mvc:annotation-driven>
 
-	<!-- 서블릿 컨테이너의 디폴트 서블릿 위임 핸들러 -->
-	<mvc:default-servlet-handler />
 
 	<!-- Interceptor -->
 	<mvc:interceptors>
@@ -90,7 +88,6 @@
 
 
 
-	<aop:aspectj-autoproxy />
 	<context:annotation-config />
 	<context:component-scan
 		base-package="kr.co.itcen.mysite.controller, kr.co.itcen.mysite.exception" /> <!-- @controlleradvice 떄문에 exception 추가 -->
