@@ -1,0 +1,34 @@
+ MultiProject
+
+mysite
+  |----mysite2(Servlet/JSP, Mode2, MVC)
+  |----mysite3(Spring MVC)
+  |----mysite4(Spring MVC, Java Config1)
+  |----mysite5(Spring MVC, Java Config2)
+  |----mysite6(Spring Boot, Java Config, yml properties)
+
+
+1) Multiproject -> jblog (과제)
+2) jblog4(Spring MVC, Java Config1)
+
+
+jblog
+  |----jblog3 (Spring MVC, XML Config)
+  |----jblog4 (Spring MVC, Java Config1)***
+
+
+
+
+
+
+mysite config
+  |----Web Application Context (dispatcher-servlet.xml -> WebConfig.java)
+  |----Root Application Context (applicationContext.xml -> AppConfig.java)
+
+
+
+hellospring
+  |----Web Application Context (spring-servlet.xml <- ClassPathWebXmlApplicationContext)
+
+hellospring2
+  |----Web Application Context (WebConfig.java <- AnnotationConfigWebApplicationContext)
