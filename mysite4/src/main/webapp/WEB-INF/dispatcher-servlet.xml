@@ -16,7 +16,8 @@
 	http://www.springframework.org/schema/context/spring-context.xsd">
 
 	<!-- validator, conversionService, messageConverter를 자동으로 등록 -->
-
+	<mvc:resources location="file:/uploads/"
+		mapping="/images/**" />
 	<!-- 6. MessageSource -->
 	<bean id="messageSource"
 		class="org.springframework.context.support.ResourceBundleMessageSource">
