@@ -8,8 +8,8 @@
 	<typeAlias type="kr.co.itcen.mysite.vo.CommentVo" alias="commentvo"/><!-- 이것땜에 개고생했네 시발 -->
     	</typeAliases>	
 	<mappers>
-		<mapper resource="kr/co/itcen/mysite/app/mybatis/mappers/user.xml" />
-		<mapper resource="kr/co/itcen/mysite/app/mybatis/mappers/guestbook.xml" />
-		<mapper resource="kr/co/itcen/mysite/app/mybatis/mappers/board.xml" />
+		<mapper resource="kr/co/itcen/mysite/config/app/mybatis/mappers/user.xml" />
+		<mapper resource="kr/co/itcen/mysite/config/app/mybatis/mappers/guestbook.xml" />
+		<mapper resource="kr/co/itcen/mysite/config/app/mybatis/mappers/board.xml" />
 	</mappers>
 </configuration>
