@@ -51,7 +51,7 @@ public class UserController {
 	@Auth("USER")
 	@RequestMapping(value = "/update", method = RequestMethod.GET)
 	public String update(@AuthUser UserVo authUser, Model model) {
-		//Long no = authUser.getNo();
+		// Long no = authUser.getNo();
 		System.out.println(authUser);
 		UserVo userVo = userService.getUser(authUser.getNo());
 
@@ -59,15 +59,23 @@ public class UserController {
 
 		return "user/update";
 	}
-	
+
 	@Auth
-	@RequestMapping(value="/update", method=RequestMethod.POST)
-	public String update(@AuthUser UserVo authuser ,@ModelAttribute UserVo userVo) {
+	@RequestMapping(value = "/update", method = RequestMethod.POST)
+	public String update(@AuthUser UserVo authuser, @ModelAttribute UserVo userVo) {
 		userVo.setNo(authuser.getNo());
 		userService.update(userVo);
-		
+
 		authuser.setName(userVo.getName());
-		
+
 		return "redirect:/";
+	}
+
+	@RequestMapping(value = "/auth", method = RequestMethod.POST)
+	public void auth() {
+	}
+
+	@RequestMapping(value = "/logout", method = RequestMethod.GET)
+	public void logout() {
 	}
 }
