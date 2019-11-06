@@ -13,6 +13,7 @@ import kr.co.itcen.mysite.service.UserService;
 @RequestMapping("/api/user")
 public class UserController {
 
+	
 	@Autowired
 	private UserService userService;
 

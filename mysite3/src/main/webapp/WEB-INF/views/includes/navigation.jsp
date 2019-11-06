@@ -4,6 +4,7 @@
 			<ul>
 				<li><a href="${pageContext.servletContext.contextPath }">이종윤</a></li>
 				<li><a href="${pageContext.servletContext.contextPath }/guestbook/list">방명록</a></li>
+				<li><a href="${pageContext.servletContext.contextPath }/guestbook/spa">방명록(spa)</a></li>
 				<li><a href="${pageContext.servletContext.contextPath }/board/list">게시판</a></li>
 			</ul>
 		</div>
