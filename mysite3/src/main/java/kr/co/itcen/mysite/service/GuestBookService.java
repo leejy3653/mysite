@@ -13,6 +13,9 @@ public class GuestBookService {
 	@Autowired
 	private GuestBookDao guestbookDao;
 	
+	public List<GuestBookVo> getList(Long startNo) {
+		return guestbookDao.getList(startNo);
+	}
 	
 	public List<GuestBookVo> getList() {
 		return guestbookDao.getList();
@@ -24,6 +27,11 @@ public class GuestBookService {
 	
 	public void delete(GuestBookVo vo) {
 		guestbookDao.delete(vo);
+		
+	}
+	
+	public boolean delete(Long no, String password) {
+		return 1 == guestbookDao.delete(no, password);
 		
 	}
 

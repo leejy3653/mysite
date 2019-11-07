@@ -2,21 +2,22 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="guestbook">
 
-	<insert id="insert" parameterType="kr.co.itcen.mysite.vo.GuestBookVo">
+	<insert id="insert"
+		parameterType="kr.co.itcen.mysite.vo.GuestBookVo">
 	<![CDATA[
 	insert 
 	  into guestbook 
 	values (null, #{name }, #{password }, #{contents }, now())
 	]]>
-	<selectKey keyProperty="no" resultType="long" order="AFTER">
+		<selectKey keyProperty="no" resultType="long" order="AFTER">
 		<![CDATA[
 		select last_insert_id()
 		]]>
-	</selectKey>
+		</selectKey>
 	</insert>
-	
-	
-	<delete id="delete" parameterType="guestbookvo" >
+
+
+	<delete id="delete" parameterType="guestbookvo">
 	
 		<![CDATA[
 		delete 
@@ -56,8 +57,30 @@
 	   limit 0, 5
 	]]>
 	</select>
-	
-	
-	
-	
+
+	<select id="getList3" resultType="guestbookvo"
+		parameterType="long">
+	<![CDATA[
+	    select no,
+	   	   	   name,
+	 	   	   contents,
+	 	 	   date_format(reg_date, '%Y-%m-%d %h:%i:%s') as reg_date
+	      from guestbook
+	      ]]>
+	      
+		<if test="_parameter > 0">   
+			<![CDATA[
+				where no < #{startNo }
+			]]>
+		</if> 
+		
+        <![CDATA[
+	  order by no desc
+	     limit 0, 5
+	]]>
+	</select>
+
+
+
+
 </mapper>

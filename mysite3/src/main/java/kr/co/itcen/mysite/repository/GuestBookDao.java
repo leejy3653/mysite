@@ -1,8 +1,5 @@
 package kr.co.itcen.mysite.repository;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
 import java.util.List;
 
 import javax.sql.DataSource;
@@ -29,14 +26,28 @@ public class GuestBookDao {
 
 	}
 
-	public void delete(GuestBookVo vo) {
-
-		sqlSession.delete("guestbook.delete", vo);
+	public int delete(GuestBookVo vo) {
+		int count = sqlSession.delete( "guestbook.delete", vo );
+		return count;
 	}
 
 	public List<GuestBookVo> getList() {
 		List<GuestBookVo> result = sqlSession.selectList("guestbook.getList");
 		return result;
 	}
+	
+	public List<GuestBookVo> getList(Long startNo) {
+		List<GuestBookVo> result = sqlSession.selectList("guestbook.getList3", startNo);
+		return result;
+	}
+
+	public int delete(Long no, String password) {
+		GuestBookVo vo = new GuestBookVo();
+		vo.setNo(no);
+		vo.setPassword(password);
+
+		return delete(vo);
+	}
+
 
 }
